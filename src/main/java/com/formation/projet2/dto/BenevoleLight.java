@@ -1,6 +1,9 @@
 package com.formation.projet2.dto;
 
+import java.util.List;
+
 import com.formation.projet2.persistence.entity.Benevole;
+import com.formation.projet2.persistence.entity.Cotisation;
 
 public class BenevoleLight {
 
@@ -8,6 +11,7 @@ public class BenevoleLight {
 		private String nom;
 		private String prenom;
 		private String libelle;
+		private double montantCotisation;
 		
 		public BenevoleLight() {
 		}
@@ -17,7 +21,9 @@ public class BenevoleLight {
 			this.setNom(b.getNom());
 			this.setPrenom(b.getPrenom());
 			this.setLibelle(b.getType().getLibelle());
+			this.setMontantCotisation(this.calculMontantCotisation(b.getListeCotisation()));
 		}
+		
 		public Long getId() {
 			return id;
 		}
@@ -41,5 +47,21 @@ public class BenevoleLight {
 		}
 		public void setLibelle(String libelle) {
 			this.libelle = libelle;
-		}		
+		}
+		
+		public double getMontantCotisation() {
+			return montantCotisation;
+		}
+
+		public void setMontantCotisation(double montantCotisation) {
+			this.montantCotisation = montantCotisation;
+		}
+		
+		public double calculMontantCotisation(List<Cotisation> listeCotisation) {
+			double montantCotisation =0;
+			for(Cotisation lc : listeCotisation) {
+				montantCotisation += lc.getMontant();
+			}
+			return montantCotisation;
+		}
 }

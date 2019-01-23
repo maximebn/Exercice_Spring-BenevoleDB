@@ -1,8 +1,8 @@
 package com.formation.projet2.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -24,9 +24,19 @@ public class BenevoleService implements IBenevoleService {
 	
 	@Override
 	public List<BenevoleLight> findAll() {
-		List<Benevole> benevoles = benevoleRepository.findAll();
-		return benevoles.stream().map(b -> new BenevoleLight(b)).collect(Collectors.toList());
+	List<Benevole> benevoles = benevoleRepository.findAll();
+	List<BenevoleLight> bll = new ArrayList<BenevoleLight>();
+	
+	for (Benevole bl : benevoles) {
+		 BenevoleLight b = new BenevoleLight(bl);
+		 bll.add(b);
 	}
+	return bll;
+	}
+	
+	//	return benevoles.stream().map(b -> new BenevoleLight(b)).collect(Collectors.toList());
+	//}
+	
 
 	@Override
 	public BenevoleOne findOne(long id) {
@@ -40,6 +50,8 @@ public class BenevoleService implements IBenevoleService {
 			item.setTelephone(opt.get().getTelephone());
 			item.setPortable(opt.get().getPortable());
 			item.setType(opt.get().getType());
+			item.setListeCotisation(opt.get().getListeCotisation());
+			
 			return item;			
 		} else {
 			throw new NotFoundException("USER " + id + " WAS NOT FOUND !");
