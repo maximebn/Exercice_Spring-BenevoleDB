@@ -18,7 +18,6 @@ public class BenevoleLight {
 			this.setPrenom(b.getPrenom());
 			this.setLibelle(b.getType().getLibelle());
 		}
-		
 		public Long getId() {
 			return id;
 		}

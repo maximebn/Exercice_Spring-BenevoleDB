@@ -54,7 +54,4 @@ public class BenevoleOne {
 	public void setType(TypeBenevole type) {
 		this.type = type;
 	}
-	
-	
-
 }
