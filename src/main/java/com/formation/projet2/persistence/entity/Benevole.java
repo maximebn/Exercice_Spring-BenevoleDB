@@ -36,6 +36,12 @@ public class Benevole {
 
 	@Column (name = "portable", length=100, nullable=false)
 	private String portable;
+	
+	@Column (name = "Login", length = 50)
+	private String login;
+	
+	@Column (name = "Password", length = 50)
+	private String password;
 
 	@ManyToOne
 	@JoinColumn(name="IDTypeBenevole", referencedColumnName="ID")

@@ -1,17 +1,18 @@
 package com.formation.projet2.dto;
 
+import java.util.Comparator;
 import java.util.List;
 
 import com.formation.projet2.persistence.entity.Benevole;
 import com.formation.projet2.persistence.entity.Cotisation;
 
-public class BenevoleLight {
+public class BenevoleLight implements Comparator<BenevoleLight> {
 
 		private Long id;
 		private String nom;
 		private String prenom;
 		private String libelle;
-		private double montantCotisation;
+		private Double montantCotisation;
 		
 		public BenevoleLight() {
 		}
@@ -49,7 +50,7 @@ public class BenevoleLight {
 			this.libelle = libelle;
 		}
 		
-		public double getMontantCotisation() {
+		public Double getMontantCotisation() {
 			return montantCotisation;
 		}
 
@@ -57,11 +58,16 @@ public class BenevoleLight {
 			this.montantCotisation = montantCotisation;
 		}
 		
-		public double calculMontantCotisation(List<Cotisation> listeCotisation) {
-			double montantCotisation =0;
+		public Double calculMontantCotisation(List<Cotisation> listeCotisation) {
+			Double montantCotisation=0.0;
 			for(Cotisation lc : listeCotisation) {
 				montantCotisation += lc.getMontant();
 			}
 			return montantCotisation;
 		}
+
+		@Override
+		public int compare(BenevoleLight bl1, BenevoleLight bl2) {
+				return bl1.getMontantCotisation().compareTo(bl2.getMontantCotisation());
+			}
 }

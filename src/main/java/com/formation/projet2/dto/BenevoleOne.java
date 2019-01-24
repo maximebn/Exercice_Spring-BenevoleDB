@@ -2,6 +2,7 @@ package com.formation.projet2.dto;
 
 import java.util.List;
 
+import com.formation.projet2.persistence.entity.Benevole;
 import com.formation.projet2.persistence.entity.Cotisation;
 import com.formation.projet2.persistence.entity.TypeBenevole;
 
@@ -15,6 +16,20 @@ public class BenevoleOne {
 	private String portable;
 	private TypeBenevole type;
 	private List<Cotisation> listeCotisation;
+	
+	public BenevoleOne() {
+	}
+	
+	public BenevoleOne(Benevole b) {
+		this.setId(b.getId());
+		this.setNom(b.getNom());
+		this.setPrenom(b.getPrenom());
+		this.setMail(b.getMail());
+		this.setTelephone(b.getTelephone());
+		this.setPortable(b.getPortable());
+		this.setType(b.getType());
+		this.setListeCotisation(b.getListeCotisation());
+	}
 	
 	public Long getId() {
 		return id;
@@ -64,5 +79,4 @@ public class BenevoleOne {
 	public void setListeCotisation(List<Cotisation> listeCotisation) {
 		this.listeCotisation = listeCotisation;
 	}
-	
 }
