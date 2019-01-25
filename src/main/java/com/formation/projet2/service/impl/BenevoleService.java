@@ -52,12 +52,13 @@ public class BenevoleService implements IBenevoleService {
 			throw new NotFoundException("USER " + id + " WAS NOT FOUND !");
 		}
 	}
-
-	/**
+	
+		/**
 	 * Method to find a benevole associated to a login and a password using a specific method from benevole repo
 	 */
 	@Override
 	public Benevole authentif(String login, String password) {
-		return benevoleRepository.findByLoginPass(login, password);
+		Benevole b = benevoleRepository.findByLoginPass(login, password);
+		return b;
 		}
 }

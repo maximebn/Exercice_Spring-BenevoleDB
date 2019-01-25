@@ -26,4 +26,11 @@ public class BenevoleSecureController {
 		if (authChecker.isBenevole() == null) throw new UnauthorizedException();
 		return benevoleService.findOne(id);
 	}
+	
+	@GetMapping(value = "/myself")
+	@ResponseBody
+	public BenevoleOne findMyself() {
+		if (authChecker.isBenevole() == null) throw new UnauthorizedException();
+		return benevoleService.findOne(authChecker.isBenevole().getId());
+	}
 }
